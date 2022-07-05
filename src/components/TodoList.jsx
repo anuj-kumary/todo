@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 
 export const TodoList = () => {
-  const [toggle, setToggle] = useState(true);
+  const [isEdit, setIsEdit] = useState(true);
   const [todoList, setTodoList] = useState([]);
   const [text, setText] = useState("");
-  const [editID, setID] = useState(null);
+  const [editId, setEditId] = useState(null);
 
   const clickHandler = () => {
-    if (text && !toggle) {
+    if (!isEdit) {
       setTodoList(
         todoList.map((data) => {
-          if (data.id === editID) {
+          if (data.id === editId) {
             return { ...data, todo: text };
           }
           return data;
         })
       );
-      setText("");
-      setToggle(true);
+      setIsEdit(true);
     } else {
       const data = { id: Date.now(), todo: text };
       setTodoList([...todoList, data]);
-      setText("");
     }
+    setText("");
   };
 
   const editHandler = (id, e) => {
@@ -30,8 +29,8 @@ export const TodoList = () => {
       return elem.id === id;
     });
     setText(editValue?.todo);
-    setToggle(false);
-    setID(editValue.id);
+    setIsEdit(false);
+    setEditId(editValue.id);
   };
 
   const deleteHandler = (id) => {
@@ -55,7 +54,7 @@ export const TodoList = () => {
         onClick={clickHandler}
         className="btn"
         type="submit"
-        value={toggle ? "Add" : "Edit"}
+        value={isEdit ? "Add" : "Edit"}
         name="Submit"
       />
 
