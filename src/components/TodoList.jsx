@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
 export const TodoList = ()  => {
     const [toggle, setToggle] = useState(true);
@@ -6,27 +6,23 @@ export const TodoList = ()  => {
     const [text , setText] = useState("")
     const [editID , setID] = useState(null)
 
-    const clickHandler = (e) => {
-       e.preventDefault()
-       
-       const formData = new FormData(e.target);
-       let formProps = Object.fromEntries(formData);
+    const clickHandler = () => {
         if(text && !toggle){
             setTodoList(
                 todoList.map((data)=>{
                     if(data.id === editID ){
-                        return {...data , todo:formProps.todo}
+                        return {...data , todo:text}
                     }
                     return data
                 })
             )
-            e.target[0].value = ""
+            setText("")
             setToggle(true)
         }
         else{
-            const data = {id:Date.now(), todo:formProps.todo}
+            const data = {id:Date.now(), todo:text}
             setTodoList([...todoList , data])
-            e.target[0].value = ""
+            setText("") 
         }
      
     }
@@ -35,8 +31,7 @@ export const TodoList = ()  => {
         const editValue = todoList.find((elem) => {
             return elem.id === id;
           });
-          console.log(e)
-          console.log(editValue.todo)
+          setText(editValue?.todo)
           setToggle(false);
           setID(editValue.id)
    }
@@ -50,10 +45,10 @@ export const TodoList = ()  => {
 
   return (
     <>
-    <form onSubmit={(e) => clickHandler(e)}>
-    <input className='input-txt' type="text" id='todo' name = "todo" required />
+   
+    <input placeholder='Enter Task' className='input-txt' value={text} onChange={(e)=>setText(e.target.value)} type="text"  />
 
-     <input className='btn' type="submit"
+     <input onClick={clickHandler} className='btn' type="submit"
         value={toggle ? "Add" : "Edit"} name="Submit" />
   
 
@@ -64,21 +59,14 @@ export const TodoList = ()  => {
             <div key={text.id}>
             <li>{text.todo}</li>
 
-     <input className='edit-btn' onClick={(e)=>editHandler(text.id , e)}  type="submit"
-        value="Edit" name="Submit" />
-
-     <input className='delete-btn' onClick={()=>deleteHandler(text.id)} type="submit"
-        value="Delete" name="Submit" />
-
-            {/* <button className='edit-btn' onClick={(e)=>editHandler(text.id , e)}>Edit</button>
-            <button className='delete-btn' onClick={()=>deleteHandler(text.id)}>Delete</button> */}
+            <button className='edit-btn' onClick={(e)=>editHandler(text.id , e)}>Edit</button>
+            <button className='delete-btn' onClick={()=>deleteHandler(text.id)}>Delete</button>
             </div>
             )
         }
         )
        
     }
-    </form>
    </>
   )
 }
