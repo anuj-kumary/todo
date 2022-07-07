@@ -11,6 +11,12 @@ body {
   text-align: center;
   margin-top: 2rem;
 }
+.heading{
+  text-transform: capitalize;
+  font-weight: 800;
+  letter-spacing: .1rem;
+  font-size: 2rem;
+}
 li {
   list-style: none;
   display: inline-block;
@@ -22,6 +28,7 @@ li {
   padding: 0.3rem;
   width: 20rem;
   font-size: 0.9rem;
+  margin-top: 1rem;
 }
 
 .edit-btn,
@@ -30,4 +37,22 @@ li {
   padding: 0.3rem 1rem;
   margin: 0.5rem;
   cursor: pointer;
+}
+.hint-btn{
+  border-radius: 50px;
+  border: 1px solid #111;
+  padding: .3rem;
+  cursor: pointer;
+}
+
+a{
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: dashed;
+}
+a:hover{
+  color: #008000;
+  text-decoration: underline;
 }
