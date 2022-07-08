@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect, useCallback } from 'react'
 import { Grid } from './Grid'
 import {Data} from "./type"
 
@@ -14,16 +14,31 @@ const cardImages = [
 
 export const  MemoryGame = () => {
   const [cards , setCards] = useState<Data[]>([])
+
+  const [timer , setTimer] = useState<number>(0)
+  let [id , setId] = useState<ReturnType<typeof setInterval> | undefined>()
+
+  const time = () => {
+    id = setInterval(()=>{
+      setTimer((time):number => ++time)
+    },1000)
+    setId(id)
+  }
+
   const suffleCards = () => {
     const cardsImage = [...cardImages , ...cardImages].sort(() => Math.random()-0.5).map((card)=>({...card, id:Math.random()}))
     setCards(cardsImage)
+    setTimer(0)
+    time()
   }
+ 
 
   return (
     <div className="grid-container">
-      <button onClick={suffleCards}>New Game</button>
-    <Grid cards={cards} setCards={setCards} />
-   
+      <h5 className='heading' >Memory Game</h5>
+      <button className='btn-start' onClick={suffleCards}>Start</button>
+    <Grid timer={timer} cards={cards} setCards={setCards} id={id} />
+    
     </div>
    
   )

@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -6,9 +11,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 img{
   width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 
@@ -62,34 +67,79 @@ a:hover{
   text-decoration: underline;
 }
 
+.grid-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
 .card-grid{
-  margin-top: 40px;
+  margin-top: 2rem;
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
+  max-width: 600px
 }
 .grid-item{
     border: 1px solid rgba(0, 0, 0, 0.8);
     height: 2rem;
     font-size: 30px;
-    margin-top: 5rem;
+    margin-top: 1rem;
 }
 .card{
   position: relative;
 }
 
 .card img {
-  width: 80%;
+  width: 100%;
   display: block;
   border: 2px solid #111;
   border-radius: 5px;
+  height: -webkit-fill-available;
 }
 
 .card .front{
   transform: rotateY(90deg);
+  transition: all ease-in .2s;
   position: absolute;
 }
 
 .flipped .front{
   transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+.card .back{
+  transition: all ease-in .2s;
+  transition-delay: .2s;
+}
+
+.flipped .back{
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}
+
+.btn-start{
+  margin-top: 1rem;
+  padding: .5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+h3{
+  text-align: center;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  font-weight: 550;
+}
+
+.hide-score{
+  display: none;
+}
+.show-score{
+  display: block;
+}
+.timer{
+  margin-top: .5rem;
 }
