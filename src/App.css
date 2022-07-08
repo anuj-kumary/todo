@@ -6,6 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .App {
   text-align: center;
@@ -50,9 +55,41 @@ a{
   cursor: pointer;
   font-weight: 700;
   font-size: 1.2rem;
-  text-decoration: dashed;
+  color: #111;
 }
 a:hover{
   color: #008000;
   text-decoration: underline;
+}
+
+.card-grid{
+  margin-top: 40px;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+.grid-item{
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    height: 2rem;
+    font-size: 30px;
+    margin-top: 5rem;
+}
+.card{
+  position: relative;
+}
+
+.card img {
+  width: 80%;
+  display: block;
+  border: 2px solid #111;
+  border-radius: 5px;
+}
+
+.card .front{
+  transform: rotateY(90deg);
+  position: absolute;
+}
+
+.flipped .front{
+  transform: rotateY(0deg);
 }
