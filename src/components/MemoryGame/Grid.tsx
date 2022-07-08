@@ -19,10 +19,7 @@ export const Grid = (props: GridProps) =>{
     const getScore = () => {
       const newScore = cards.filter(item=> item.matched=== true).length
       setScore(newScore / 2)
-      console.log(newScore)
-      console.log(cards.length)
       if(newScore === cards.length){
-        console.log("hello inside from score")
         stopTimer()
       }
     }

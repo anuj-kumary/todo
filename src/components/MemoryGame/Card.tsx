@@ -1,6 +1,8 @@
 import React from 'react'
+import { CardsProps } from './type'
 
-export const Card = ({card, handleClick,flipped}) => {
+export const Card = (props:CardsProps ) => {
+  const {card, handleClick,flipped} = props
   return (
     <div className="card">
     <div className = {flipped ? "flipped" : "" }>
