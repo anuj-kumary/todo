@@ -7,7 +7,7 @@ export const TodoList = () => {
   const [editId, setEditId] = useState(null);
 
   const clickHandler = () => {
-    if (!isEdit) {
+   if (!isEdit) {
       setTodoList(
         todoList.map((data) => {
           if (data.id === editId) {
@@ -46,11 +46,13 @@ export const TodoList = () => {
         placeholder="Enter Task"
         className="input-txt"
         value={text}
+        data-testid='input'
         onChange={(e) => setText(e.target.value)}
         type="text"
       />
 
       <input
+        data-testid="addTodo"
         onClick={clickHandler}
         className="btn"
         type="submit"
@@ -59,17 +61,19 @@ export const TodoList = () => {
       />
 
       {todoList.map((text) => {
-        return (
-          <div key={text.id}>
-            <li>{text.todo}</li>
+       return (
+          <div data-testid="todoList" key={text.id}>
+            <li className="todo">{text.todo}</li>
 
             <button
               className="edit-btn"
+              data-testid='editHandler'
               onClick={(e) => editHandler(text.id, e)}
             >
               Edit
             </button>
             <button
+            data-testid="deleteButton"
               className="delete-btn"
               onClick={() => deleteHandler(text.id)}
             >

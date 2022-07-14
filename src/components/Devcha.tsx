@@ -41,11 +41,11 @@ const getHintHandler = () => {
     <div className='container'>
     <p>Prove that you are a developer!</p>
     <h2 className='heading'>Devcha</h2>
-    <small>Enter Your DEVCHA <span className='hint-btn' onClick={getHintHandler}>Hint</span></small>
+    <small>Enter Your DEVCHA <span data-testid='hintBtn' className='hint-btn' onClick={getHintHandler}>Hint</span></small>
     <br />
-    <input className='input-txt' value={inputCaptch} onChange={(e)=>setInputCaptch(e.target.value)} type="text" />
-    <button className='btn' onClick={clickHandler}>Submit</button>
-    <p>{msg}</p>
+    <input data-testid='input' className='input-txt' value={inputCaptch} onChange={(e)=>setInputCaptch(e.target.value)} type="text" />
+    <button data-testid="clickBtn" className='btn' onClick={clickHandler}>Submit</button>
+    <p className='name' data-testid="message">{msg}</p>
     </div>
    
     </>

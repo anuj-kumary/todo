@@ -31,7 +31,6 @@ li {
   list-style: none;
   display: inline-block;
   font-weight: 400;
-  text-transform: capitalize;
 }
 
 .input-txt {
